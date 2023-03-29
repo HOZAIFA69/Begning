@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-header">
+    {{title}}
+    <a [routerLink]="['/customer','create' ,0]" class="btn btn-primary pull-right">
+      Create
+    </a>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text"></p>
+    <table class="table" *ngIf="customers">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Phone</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let customer of customers">
+          <td>{{customer.id}}</td>
+          <td>{{customer.name}}</td>
+          <td>{{customer.phone}}</td>
+          <td>
+            <a [routerLink]="['/customer','details',customer.id]" class="btn btn-primary">View</a>
+          </td>
+          <td>
+            <a [routerLink]="['/customer','edit', customer.id]" class="btn btn-primary">Edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

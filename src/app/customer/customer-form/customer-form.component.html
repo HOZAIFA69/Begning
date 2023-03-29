@@ -1,0 +1,36 @@
+<form [formGroup]="customerForm" (ngSubmit)="Save()" novalidate>
+
+  <div class="card">
+    <div class="card-header">
+      {{title}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+      <p class="card-text"></p>
+      <div class="row g-3 align-items-center">
+        <div class="col-md-3">
+          <label for="inputPassword6" class="col-form-label">Id:</label>
+        </div>
+        <div class="col-md-8">
+          <input type="number" formControlName="id" class="form-control" readonly>
+        </div>
+
+        <div class="col-md-3">
+          <label class="col-form-label">Name:</label>
+        </div>
+        <div class="col-md-8">
+          <input type="text" formControlName="name" class="form-control">
+
+        </div>
+
+        <div class="col-md-3">
+          <label for="inputPassword6" class="col-form-label">Phone:</label>
+        </div>
+        <div class="col-md-8">
+          <input type="text" formControlName="phone" class="form-control">
+        </div>
+      </div>
+      <button type="submit" [disabled]="!customerForm.valid" class="btn btn-primary pull-right">Save</button>
+    </div>
+  </div>
+</form>

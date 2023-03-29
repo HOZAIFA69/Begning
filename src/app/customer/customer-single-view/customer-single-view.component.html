@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-header">
+    {{title}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <p class="card-text"></p>
+    <div class="row g-3 align-items-center">
+      <div class="col-md-3">
+        <label for="inputPassword6" class="col-form-label">Id</label>
+      </div>
+      <div class="col-md-8">
+        <div class="form-control">
+          {{customer.id}}
+        </div>
+    </div>
+
+    <div class="col-md-3">
+      <label class="col-form-label">Name:</label>
+    </div>
+    <div class="col-md-8">
+      <div  id="inputPassword6" class=" " aria-describedby="passwordHelpInline">
+        {{customer.name}}
+      </div>
+  </div>
+
+  <div class="col-md-3">
+    <label for="inputPassword6" class="col-form-label">Phone</label>
+  </div>
+  <div class="col-md-8">
+    <div  id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+      {{customer.phone}}
+    </div>
+</div>
+  </div>
+</div>
