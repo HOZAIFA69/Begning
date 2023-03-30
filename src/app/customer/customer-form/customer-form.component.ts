@@ -42,16 +42,17 @@ export class CustomerFormComponent implements OnInit {
   }
 
   displayCustomerOnForm(customer: Customer): void {
-    this.customerForm.reset();
+    if (this.customerForm)
+      this.customerForm.reset();
+
     this.customer = customer;
 
     if (this.customer.id == 0) {
       this.title = 'Create Customer';
-
     } else {
-
       this.title = 'Edit Customer';
     }
+
     this.customerForm.setValue({
       id: this.customer.id,
       name: this.customer.name,
@@ -59,7 +60,6 @@ export class CustomerFormComponent implements OnInit {
     });
   }
   Save() {
-    debugger;
     const formValue = this.customerForm.value;
 
     if (formValue.id === 0) {

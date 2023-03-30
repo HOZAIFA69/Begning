@@ -1,6 +1,11 @@
 <div class="card">
   <div class="card-header">
     {{title}}
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary pull-right " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      Add Invoice </button>
+    <!-- Button trigger modal -->
+
   </div>
   <div class="card-body">
     <h5 class="card-title"></h5>
@@ -13,24 +18,71 @@
         <div class="form-control">
           {{customer.id}}
         </div>
-    </div>
-
-    <div class="col-md-3">
-      <label class="col-form-label">Name:</label>
-    </div>
-    <div class="col-md-8">
-      <div  id="inputPassword6" class=" " aria-describedby="passwordHelpInline">
-        {{customer.name}}
       </div>
+
+      <div class="col-md-3">
+        <label class="col-form-label">Name:</label>
+      </div>
+      <div class="col-md-8">
+        <div id="inputPassword6" class=" " aria-describedby="passwordHelpInline">
+          {{customer.name}}
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <label for="inputPassword6" class="col-form-label">Phone</label>
+      </div>
+      <div class="col-md-8">
+        <div id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+          {{customer.phone}}
+        </div>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <table class="table table-border" *ngIf="customer.invoices">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">customerId</th>
+          <th scope="col">invoiceValue</th>
+          <th scope="col">invoiceDate</th>
+          <th scope="col">states</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let inv of customer.invoices">
+          <td>{{inv.id}}</td>
+          <td>{{inv.customerId}}</td>
+          <td>{{inv.invoiceValue}}</td>
+          <td>{{inv.invoiceDate}}</td>
+          <td class="badge-primary">{{state[inv.state]}}</td>
+          <td><a class="btn btn-danger">Delete</a></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <div class="col-md-3">
-    <label for="inputPassword6" class="col-form-label">Phone</label>
-  </div>
-  <div class="col-md-8">
-    <div  id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-      {{customer.phone}}
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
     </div>
-</div>
   </div>
-</div>

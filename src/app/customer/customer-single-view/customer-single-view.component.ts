@@ -1,3 +1,4 @@
+import { state } from './../../invoice/models/invoice';
 import { Customer } from './../models/customer';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
 import { CustomerService } from './../services/customer.service';
@@ -8,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './customer-single-view.component.html',
   styleUrls: ['./customer-single-view.component.css']
 })
+
 export class CustomerSingleViewComponent implements OnInit {
   title = 'Customer details'
-  customer: Customer;
+  customer = new Customer();
   id: number;
+  public state = state;
 
   constructor(private customerService: CustomerService,
     private activatedRoute: ActivatedRoute) {
@@ -19,11 +22,10 @@ export class CustomerSingleViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
-    this.customerService.getById(this.id).subscribe(
-      data => this.customer = data,
-      err => console.log(err),
+    this.customerService.GetCustomersIncludeInvoice(this.id).subscribe(
+      (data : Customer) => this.customer = data,
+      (err: any) => console.log(err),
+      (onCompleted : void) => console.log(JSON.stringify(this.customer))
     );
 
   }

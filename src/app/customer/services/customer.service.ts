@@ -15,18 +15,22 @@ export class CustomerService {
     return this.HttpClient.get<Customer[]>(`${this.baseUrl}/GetAll`);
   }
 
+  GetCustomersIncludeInvoice(id: number): Observable<Customer> {
+    return this.HttpClient.get<Customer>(`${this.baseUrl}/GetCustomersIncludeInvoice/${id}`);
+  }
+
   getById(id: number): Observable<Customer> {
     if (id === 0)
       return of(this.intiCustomer());
     else
       return this.HttpClient.get<Customer>(`${this.baseUrl}/GetById/${id}`);
   }
-  create(customer: Customer) : Observable<Customer>{
-   return this.HttpClient.post<Customer>(`${this.baseUrl}/add`,customer);
+  create(customer: Customer): Observable<Customer> {
+    return this.HttpClient.post<Customer>(`${this.baseUrl}/add`, customer);
   }
 
-  update(customer: Customer) : Observable<Customer>  {
-   return  this.HttpClient.put<Customer>(`${this.baseUrl}/Update/${customer.id}`, customer);
+  update(customer: Customer): Observable<Customer> {
+    return this.HttpClient.put<Customer>(`${this.baseUrl}/Update/${customer.id}`, customer);
   }
 
   delete(id: number) {
@@ -37,6 +41,7 @@ export class CustomerService {
       id: 0,
       name: '',
       phone: '',
+      invoices: [],
     }
   }
 }
