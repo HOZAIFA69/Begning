@@ -80,12 +80,13 @@ export class CustomerSingleViewComponent implements OnInit, OnDestroy {
     debugger;
 
     this.invoiceService.delete(id).subscribe(
-      response=>{
+      response => {
         console.log(response);
         this.toastr.success("deleted");
 
       },
-      (err: HttpErrorResponse)=>{ this.toastr.error(err.message);
+      (err: HttpErrorResponse) => {
+        this.toastr.error(err.message);
 
       }
     );
