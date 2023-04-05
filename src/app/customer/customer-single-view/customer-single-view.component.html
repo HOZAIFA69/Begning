@@ -59,12 +59,11 @@
           <td>{{inv.invoiceValue}}</td>
           <td>{{inv.invoiceDate}}</td>
           <td class="badge-primary">{{state[inv.state]}}</td>
-          <td><a class="btn btn-danger">Delete</a></td>
+          <td><button (click)="deteteInvoice(inv.id)" class="btn btn-danger">Delete</button></td>
         </tr>
       </tbody>
     </table>
   </div>
-
 
 
   <!-- Modal -->
@@ -76,13 +75,37 @@
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
-        </div>
+        <form [formGroup]="invoiceForm" (ngSubmit)="saveInvoice()" novalidate>
+          <div class="modal-body">
+            <!--form-->
+            <div class="mb-3" hidden>
+              <label class="form-label">customer Id</label>
+              <input formControlName="customerId" type="number" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Invoice Value</label>
+              <input formControlName="invoiceValue" type="number" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text"></div>
+            </div>
+
+            <div class="mb-3">
+              <label for="staticEmail" class="col-sm-2 col-form-label">State</label>
+              <select class="form-control" name="state" formControlName="state">
+                <option selected="true">--Select--</option>
+                <option class="form-control" t value="{{stat}}" *ngFor="let stat of enumKeys">
+                  {{state[stat]}}
+                </option>
+              </select>
+            </div>
+            <!--form-->
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="closeInvoiceModal" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!invoiceForm.valid">Save</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
