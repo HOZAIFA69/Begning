@@ -2,46 +2,53 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Customer } from '../models/customer';
+import { DataService } from 'src/app/services/dataService';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerService {
-  baseUrl = "https://localhost:7049/api/Customers";
 
-  constructor(private HttpClient: HttpClient) { }
+export class CustomerService extends DataService<Customer> {
 
-  getAll(): Observable<Customer[]> {
-    return this.HttpClient.get<Customer[]>(`${this.baseUrl}/GetAll`);
+
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "https://localhost:7049/api/Customers")
   }
 
   GetCustomersIncludeInvoice(id: number): Observable<Customer> {
-    return this.HttpClient.get<Customer>(`${this.baseUrl}/GetCustomersIncludeInvoice/${id}`);
-  }
-
-  getById(id: number): Observable<Customer> {
-    if (id === 0)
-      return of(this.intiCustomer());
-    else
-      return this.HttpClient.get<Customer>(`${this.baseUrl}/GetById/${id}`);
-  }
-  create(customer: Customer): Observable<Customer> {
-    return this.HttpClient.post<Customer>(`${this.baseUrl}/add`, customer);
-  }
-
-  update(customer: Customer): Observable<Customer> {
-    return this.HttpClient.put<Customer>(`${this.baseUrl}/Update/${customer.id}`, customer);
-  }
-
-  delete(id: number) {
-    this.HttpClient.delete(`${this.baseUrl}/Delete/${id}`);
-  }
-  private intiCustomer(): Customer {
-    return {
-      id: 0,
-      name: '',
-      phone: '',
-      invoices: [],
-    }
+    return this.httpClient.get<Customer>(`${this.apiUrl}/GetCustomersIncludeInvoice/${id}`);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

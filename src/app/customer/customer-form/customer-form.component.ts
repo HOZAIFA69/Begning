@@ -24,11 +24,12 @@ export class CustomerFormComponent implements OnInit {
   ngOnInit(): void {
 
     this.id = + this.activatedRoute.snapshot.paramMap.get('id');
-
-    this.customerService.getById(this.id).subscribe(
-      (customer: Customer) => this.displayCustomerOnForm(customer),
-      (err: any) => console.log(err),
-    );
+    if (this.id !== 0) {
+      this.customerService.getById(this.id).subscribe(
+        (customer: Customer) => this.displayCustomerOnForm(customer),
+        (err: any) => console.log(err),
+      );
+    }
 
     this.createForm();
   }
