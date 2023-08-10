@@ -1,7 +1,7 @@
 import { InvoiceService } from './../../invoice/services/invoice.service';
 import { state, Invoice } from './../../invoice/models/invoice';
 import { Customer } from './../models/customer';
-import { ActivatedRoute, Router, Routes } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from './../services/customer.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

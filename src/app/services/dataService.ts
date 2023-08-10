@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, catchError, of, throwError } from 'rxjs';
+
 export abstract class DataService<T> {
 
-
-  constructor(protected httpClient: HttpClient, protected apiUrl: string) {
-  }
+  constructor(protected httpClient: HttpClient,protected apiUrl: string) { }
 
   getAll(): Observable<T[]> {
-    return this.httpClient.get<T[]>(`${this.apiUrl}`);
+    return this.httpClient.get<T[]>(`${this.apiUrl}`).pipe(
+      catchError(err => throwError(err)
+      ));
   }
 
   getById(id: any): Observable<T> {

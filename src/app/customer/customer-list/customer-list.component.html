@@ -8,7 +8,7 @@
   <div class="card-body">
     <h5 class="card-title">Special title treatment</h5>
     <p class="card-text"></p>
-    <table class="table" *ngIf="customers">
+    <table class="table" *ngIf="customers$ |async as customers ">
       <thead>
         <tr>
           <th scope="col">Id</th>
